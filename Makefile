@@ -6,7 +6,7 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 10:00:11 by welee             #+#    #+#              #
-#    Updated: 2024/06/16 09:06:46 by welee            ###   ########.fr        #
+#    Updated: 2024/06/16 09:10:00 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ norm:
 	$(NORM) $(NORM_FLAGS) $(SRCS_DIR) $(INCLUDES_DIR)
 $(TEST_DIR): $(NAME)
 	$(MAKE) $(TEST_DIR)
-dist:
+$(DIST_DIR):
 	$(MKDIR) $(DIST_DIR)
 	$(CP) $(PUBLIC_DIR)/Makefile $(DIST_DIR)/Makefile
 	$(CP) $(SRCS_DIR) $(DIST_DIR)
@@ -71,7 +71,7 @@ dist:
 	$(CP) $(LIBFT_DIR) $(DIST_DIR)
 	$(ECHO) $(WHOAMI) > $(DIST_DIR)/author
 	$(ECHO) "Dist created in $(DIST_DIR)"
-docs:
+$(DOCS_DIR):
 	$(MKDIR) $(DOCS_DIR)
 	$(DOXYGEN) $(DOXYGEN_CONFIG)
 $(LIBFT_DIR):
