@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 10:53:26 by welee             #+#    #+#             */
-/*   Updated: 2024/06/17 11:00:14 by welee            ###   ########.fr       */
+/*   Updated: 2024/06/17 12:49:15 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void	pb(t_stack *a, t_stack *b)
 		return ;
 	data = ft_stack_pop(a);
 	ft_stack_push(b, data);
+	write(1, "pb\n", 3);
 }

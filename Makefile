@@ -6,7 +6,7 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 10:00:11 by welee             #+#    #+#              #
-#    Updated: 2024/06/17 11:51:11 by welee            ###   ########.fr        #
+#    Updated: 2024/06/17 12:26:43 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,5 +75,5 @@ $(DOCS_DIR):
 	$(MKDIR) $(DOCS_DIR)
 	$(DOXYGEN) $(DOXYGEN_CONFIG)
 $(LIBFT_DIR):
-	$(MAKE) $(LIBFT_DIR) fclean
+	$(MAKE) $(LIBFT_DIR)
 .PHONY: all clean fclean re norm tests dist

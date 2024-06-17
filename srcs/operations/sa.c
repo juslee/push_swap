@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 10:46:24 by welee             #+#    #+#             */
-/*   Updated: 2024/06/17 10:57:58 by welee            ###   ########.fr       */
+/*   Updated: 2024/06/17 12:50:13 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,5 @@ void	sa(t_stack *a)
 	first->next = second->next;
 	second->next = first;
 	a->top = second;
+	write(1, "sa\n", 3);
 }

@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:05:16 by welee             #+#    #+#             */
-/*   Updated: 2024/06/17 11:06:39 by welee            ###   ########.fr       */
+/*   Updated: 2024/06/17 12:51:20 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ void	rrb(t_stack *b)
 	second_last->next = NULL;
 	last->next = b->top;
 	b->top = last;
+	write(1, "rrb\n", 4);
 }

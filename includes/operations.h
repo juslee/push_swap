@@ -6,13 +6,14 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 10:43:54 by welee             #+#    #+#             */
-/*   Updated: 2024/06/17 10:45:49 by welee            ###   ########.fr       */
+/*   Updated: 2024/06/17 12:52:39 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OPERATIONS_H
 # define OPERATIONS_H
 # include "libft.h"
+# include <unistd.h>
 
 void	sa(t_stack *a);
 void	sb(t_stack *b);
