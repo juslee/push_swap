@@ -6,7 +6,7 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/13 10:00:11 by welee             #+#    #+#              #
-#    Updated: 2024/06/16 09:10:00 by welee            ###   ########.fr        #
+#    Updated: 2024/06/17 11:51:11 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
 LIBFT_DIR = libft
 LIBFT = -L $(LIBFT_DIR)/bin -lft
-LIBFT_INC = -I $(LIBFT_DIR)/libft.h
+LIBFT_INC = -I $(LIBFT_DIR)/bin
 
 PUBLIC_DIR = public
 SRCS_DIR = srcs
@@ -50,10 +50,10 @@ DOXYGEN_CONFIG = Doxyfile
 all: $(LIBFT_DIR) $(NAME)
 $(NAME): $(OBJS)
 	$(MKDIR) $(BIN_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT) $(LIBFT_INC) $(OBJS) -o $(BIN_DIR)/$(NAME)
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT_INC) $(LIBFT) $(OBJS) -o $(BIN_DIR)/$(NAME)
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	$(MKDIR) $(OBJS_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(MKDIR) $(@D)
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT_INC) -c $< -o $@
 clean:
 	$(RM) $(OBJS)
 fclean: clean

@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   rrr.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 11:02:31 by welee             #+#    #+#             */
-/*   Updated: 2024/06/17 11:08:57 by welee            ###   ########.fr       */
+/*   Created: 2024/06/17 11:06:57 by welee             #+#    #+#             */
+/*   Updated: 2024/06/17 11:07:15 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
-# include "libft.h"
-# include "operations.h"
-# include "push_swap.h"
-#endif
+/**
+ * @file rrr.c
+ * @brief rra and rrb at the same time
+ */
+
+#include "operations.h"
+
+/**
+ * @brief rra and rrb at the same time
+ *
+ * @param a stack a
+ * @param b stack b
+ */
+void	rrr(t_stack *a, t_stack *b)
+{
+	rra(a);
+	rrb(b);
+}
