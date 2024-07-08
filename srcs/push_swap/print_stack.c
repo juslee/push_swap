@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.h                                       :+:      :+:    :+:   */
+/*   print_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 10:43:54 by welee             #+#    #+#             */
-/*   Updated: 2024/06/20 11:50:37 by welee            ###   ########.fr       */
+/*   Created: 2024/06/20 11:07:40 by welee             #+#    #+#             */
+/*   Updated: 2024/06/20 11:23:52 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OPERATIONS_H
-# define OPERATIONS_H
-# include "libft.h"
-# include <unistd.h>
+#include "libft.h"
+#include "push_swap.h"
+#include <stdio.h>
 
-void	sa(t_stack *a);
-void	sb(t_stack *b);
-void	ss(t_stack *a, t_stack *b);
-void	pa(t_stack *a, t_stack *b);
-void	pb(t_stack *a, t_stack *b);
-void	ra(t_stack *a);
-void	rb(t_stack *b);
-void	rr(t_stack *a, t_stack *b);
-void	rra(t_stack *a);
-void	rrb(t_stack *b);
-void	rrr(t_stack *a, t_stack *b);
-#endif
+void	print_stack(t_stack *stack)
+{
+	t_list	*current;
+
+	current = stack->top;
+	while (current)
+	{
+		printf("%d\n", *(int *)(current->content));
+		current = current->next;
+	}
+}

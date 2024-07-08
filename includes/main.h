@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:02:31 by welee             #+#    #+#             */
-/*   Updated: 2024/06/17 12:41:37 by welee            ###   ########.fr       */
+/*   Updated: 2024/06/20 10:00:50 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,4 @@
 # include "libft.h"
 # include "operations.h"
 # include "push_swap.h"
-
-void	print_error(void);
-void	sort_stack(t_stack *a)
 #endif
