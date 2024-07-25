@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ss.c                                               :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 10:50:24 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 14:31:14 by welee            ###   ########.fr       */
+/*   Created: 2024/07/22 14:27:10 by welee             #+#    #+#             */
+/*   Updated: 2024/07/22 19:39:31 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file ss.c
- * @brief sa and sb at the same time
- */
-
 #include "operations.h"
 
-/**
- * @brief sa and sb at the same time
- *
- * @param a stack a
- * @param b stack b
- */
-void	ss(t_stack *a, t_stack *b)
+void	push(t_stack *from, t_stack *to)
 {
-	swap(a);
-	swap(b);
-	write(1, "ss\n", 3);
+	int	value;
+
+	if (from->size == 0)
+		return ;
+	value = ft_stack_pop(from);
+	ft_stack_push(to, value);
 }

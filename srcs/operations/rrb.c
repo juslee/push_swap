@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:05:16 by welee             #+#    #+#             */
-/*   Updated: 2024/06/17 12:51:20 by welee            ###   ########.fr       */
+/*   Updated: 2024/07/22 14:33:38 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,6 @@
  */
 void	rrb(t_stack *b)
 {
-	t_list	*second_last;
-	t_list	*last;
-
-	if (b->size < 2)
-		return ;
-	second_last = b->top;
-	while (second_last->next->next)
-		second_last = second_last->next;
-	last = second_last->next;
-	second_last->next = NULL;
-	last->next = b->top;
-	b->top = last;
+	reverse_rotate(b);
 	write(1, "rrb\n", 4);
 }

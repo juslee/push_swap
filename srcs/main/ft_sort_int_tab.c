@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ss.c                                               :+:      :+:    :+:   */
+/*   ft_sort_int_tab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 10:50:24 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 14:31:14 by welee            ###   ########.fr       */
+/*   Created: 2024/07/22 20:16:36 by welee             #+#    #+#             */
+/*   Updated: 2024/07/22 20:16:56 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file ss.c
- * @brief sa and sb at the same time
- */
-
-#include "operations.h"
-
-/**
- * @brief sa and sb at the same time
- *
- * @param a stack a
- * @param b stack b
- */
-void	ss(t_stack *a, t_stack *b)
+void	ft_sort_int_tab(int *tab, int size)
 {
-	swap(a);
-	swap(b);
-	write(1, "ss\n", 3);
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size - 1)
+		{
+			if (tab[j] > tab[j + 1])
+			{
+				tmp = tab[j];
+				tab[j] = tab[j + 1];
+				tab[j + 1] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
 }

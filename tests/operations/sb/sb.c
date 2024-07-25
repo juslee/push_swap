@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:54:58 by welee             #+#    #+#             */
-/*   Updated: 2024/06/17 19:26:43 by welee            ###   ########.fr       */
+/*   Updated: 2024/07/22 15:38:59 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	test_sb(void)
 	int			expected_values[] = {2, 3, 1};
 	int			i;
 
-	b = ft_stack_new(sizeof(int), NULL);
+	b = ft_stack_new(sizeof(int));
 	i = 0;
 	while (i < 3)
 	{

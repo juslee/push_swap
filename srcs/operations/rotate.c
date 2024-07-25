@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ss.c                                               :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 10:50:24 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 14:31:14 by welee            ###   ########.fr       */
+/*   Created: 2024/07/22 14:28:30 by welee             #+#    #+#             */
+/*   Updated: 2024/07/22 19:40:08 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file ss.c
- * @brief sa and sb at the same time
- */
-
 #include "operations.h"
 
-/**
- * @brief sa and sb at the same time
- *
- * @param a stack a
- * @param b stack b
- */
-void	ss(t_stack *a, t_stack *b)
+void	rotate(t_stack *stack)
 {
-	swap(a);
-	swap(b);
-	write(1, "ss\n", 3);
+	t_stacknode	*top_node;
+	t_stacknode	*bottom_node;
+
+	if (stack->size < 2)
+		return ;
+	top_node = stack->top;
+	bottom_node = stack->bottom;
+	stack->top = top_node->next;
+	stack->top->prev = NULL;
+	bottom_node->next = top_node;
+	top_node->prev = bottom_node;
+	top_node->next = NULL;
+	stack->bottom = top_node;
 }

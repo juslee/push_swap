@@ -5,34 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 12:37:27 by welee             #+#    #+#             */
-/*   Updated: 2024/06/17 12:38:09 by welee            ###   ########.fr       */
+/*   Created: 2024/07/23 14:14:15 by welee             #+#    #+#             */
+/*   Updated: 2024/07/23 14:14:50 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file is_sorted.c
- * @brief Check if a stack is sorted
- */
+#include "stack.h"
 
-#include "libft.h"
-
-/**
- * @brief Check if a stack is sorted
- *
- * @param stack stack to check
- * @return int return 1 if the stack is sorted, 0 otherwise
- */
 int	is_sorted(t_stack *stack)
 {
-	t_list	*current;
+	t_stacknode	*node;
 
-	current = stack->top;
-	while (current && current->next)
+	if (!stack || stack->size < 2)
+		return (1);
+	node = stack->top;
+	while (node && node->next)
 	{
-		if (*(int *)(current->content) > *(int *)(current->next->content))
+		if (node->value > node->next->value)
 			return (0);
-		current = current->next;
+		node = node->next;
 	}
 	return (1);
 }

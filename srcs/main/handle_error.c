@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ss.c                                               :+:      :+:    :+:   */
+/*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 10:50:24 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 14:31:14 by welee            ###   ########.fr       */
+/*   Created: 2024/07/23 14:17:21 by welee             #+#    #+#             */
+/*   Updated: 2024/07/23 14:18:14 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file ss.c
- * @brief sa and sb at the same time
- */
+#include "libft.h"
+#include "stack.h"
 
-#include "operations.h"
-
-/**
- * @brief sa and sb at the same time
- *
- * @param a stack a
- * @param b stack b
- */
-void	ss(t_stack *a, t_stack *b)
+int	handle_error(t_stack *a, t_stack *b)
 {
-	swap(a);
-	swap(b);
-	write(1, "ss\n", 3);
+	if (a)
+		ft_stack_clear(a);
+	if (b)
+		ft_stack_clear(b);
+	ft_putstr_fd("Error\n", 2);
+	return (1);
 }

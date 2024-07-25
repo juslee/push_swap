@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ss.c                                               :+:      :+:    :+:   */
+/*   is_duplicate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/17 10:50:24 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 14:31:14 by welee            ###   ########.fr       */
+/*   Created: 2024/07/22 20:11:48 by welee             #+#    #+#             */
+/*   Updated: 2024/07/22 20:12:00 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file ss.c
- * @brief sa and sb at the same time
- */
+#include "main.h"
 
-#include "operations.h"
-
-/**
- * @brief sa and sb at the same time
- *
- * @param a stack a
- * @param b stack b
- */
-void	ss(t_stack *a, t_stack *b)
+int	is_duplicate(int *arr, int size, int num)
 {
-	swap(a);
-	swap(b);
-	write(1, "ss\n", 3);
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (arr[i] == num)
+			return (1);
+		i++;
+	}
+	return (0);
 }

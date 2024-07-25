@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 10:46:24 by welee             #+#    #+#             */
-/*   Updated: 2024/06/17 12:50:13 by welee            ###   ########.fr       */
+/*   Updated: 2024/07/22 14:30:37 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,6 @@
  */
 void	sa(t_stack *a)
 {
-	t_list	*first;
-	t_list	*second;
-
-	if (a->size < 2)
-		return ;
-	first = a->top;
-	second = first->next;
-	first->next = second->next;
-	second->next = first;
-	a->top = second;
+	swap(a);
 	write(1, "sa\n", 3);
 }

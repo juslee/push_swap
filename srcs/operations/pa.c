@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 10:51:31 by welee             #+#    #+#             */
-/*   Updated: 2024/06/17 12:51:20 by welee            ###   ########.fr       */
+/*   Updated: 2024/07/22 15:11:38 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@
  */
 void	pa(t_stack *a, t_stack *b)
 {
-	void	*data;
-
-	if (ft_stack_is_empty(b))
-		return ;
-	data = ft_stack_pop(b);
-	ft_stack_push(a, data);
+	push(a, b);
 	write(1, "pa\n", 3);
 }

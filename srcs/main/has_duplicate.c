@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_stack.c                                      :+:      :+:    :+:   */
+/*   has_duplicate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 11:07:40 by welee             #+#    #+#             */
-/*   Updated: 2024/06/20 11:23:52 by welee            ###   ########.fr       */
+/*   Created: 2024/07/23 14:12:46 by welee             #+#    #+#             */
+/*   Updated: 2024/07/23 14:13:28 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "push_swap.h"
-#include <stdio.h>
+#include "stack.h"
 
-void	print_stack(t_stack *stack)
+int	has_duplicate(t_stack *stack)
 {
-	t_list	*current;
+	t_stacknode	*outer;
+	t_stacknode	*inner;
 
-	current = stack->top;
-	while (current)
+	outer = stack->top;
+	while (outer && outer->next)
 	{
-		printf("%d\n", *(int *)(current->content));
-		current = current->next;
+		inner = outer->next;
+		while (inner)
+		{
+			if (outer->value == inner->value)
+				return (1);
+			inner = inner->next;
+		}
+		outer = outer->next;
 	}
+	return (0);
 }

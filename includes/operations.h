@@ -6,14 +6,18 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 10:43:54 by welee             #+#    #+#             */
-/*   Updated: 2024/06/20 11:50:37 by welee            ###   ########.fr       */
+/*   Updated: 2024/07/22 19:37:48 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OPERATIONS_H
 # define OPERATIONS_H
-# include "libft.h"
-# include <unistd.h>
+# include "stack.h"
+
+void	swap(t_stack *stack);
+void	push(t_stack *from, t_stack *to);
+void	rotate(t_stack *stack);
+void	reverse_rotate(t_stack *stack);
 
 void	sa(t_stack *a);
 void	sb(t_stack *b);
