@@ -5,75 +5,44 @@
 #                                                     +:+ +:+         +:+      #
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/13 10:00:11 by welee             #+#    #+#              #
-#    Updated: 2024/06/17 12:26:43 by welee            ###   ########.fr        #
+#    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
+#    Updated: 2024/07/26 21:05:19 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
-SRCS = $(shell find $(SRCS_DIR) -name '*.c')
-OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
-LIBFT_DIR = libft
-LIBFT = -L $(LIBFT_DIR)/bin -lft
-LIBFT_INC = -I $(LIBFT_DIR)/bin
+SRC_DIR = srcs
+INC_DIR = includes
+OBJ_DIR = objs
 
-PUBLIC_DIR = public
-SRCS_DIR = srcs
-OBJS_DIR = objs
-INCLUDES_DIR = includes
-TEST_DIR = tests
-DIST_DIR = dist
-BIN_DIR = bin
-DOCS_DIR = docs
+SRCS = $(wildcard $(SRC_DIR)/stack/*.c) \
+	   $(wildcard $(SRC_DIR)/utils/*.c) \
+	   $(wildcard $(SRC_DIR)/operations/*.c) \
+	   $(wildcard $(SRC_DIR)/parser/*.c) \
+	   $(wildcard $(SRC_DIR)/sort/*.c) \
+	   $(wildcard $(SRC_DIR)/*.c)
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-INCLUDES = -I ${INCLUDES_DIR}
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-LIBC = ar rcs
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
 RM = rm -f
-MKDIR = mkdir -p
-MAKE = make -C
-CD = cd
-CP = cp -r
-ECHO = echo
-FRANCINETTE = francinette
-FRANCINETTE_FLAGS = -s
-WHOAMI = $(shell whoami)
 
-NORM = norminette
-NORM_FLAGS = -R CheckForbiddenSourceHeader -R CheckDefine
+all: $(NAME)
 
-DOXYGEN = doxygen
-DOXYGEN_CONFIG = Doxyfile
-
-all: $(LIBFT_DIR) $(NAME)
 $(NAME): $(OBJS)
-	$(MKDIR) $(BIN_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT_INC) $(LIBFT) $(OBJS) -o $(BIN_DIR)/$(NAME)
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	$(MKDIR) $(@D)
-	$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT_INC) -c $< -o $@
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
 	$(RM) $(OBJS)
+
 fclean: clean
 	$(RM) $(NAME)
+
 re: fclean all
-norm:
-	$(NORM) $(NORM_FLAGS) $(SRCS_DIR) $(INCLUDES_DIR)
-$(TEST_DIR): $(NAME)
-	$(MAKE) $(TEST_DIR)
-$(DIST_DIR):
-	$(MKDIR) $(DIST_DIR)
-	$(CP) $(PUBLIC_DIR)/Makefile $(DIST_DIR)/Makefile
-	$(CP) $(SRCS_DIR) $(DIST_DIR)
-	$(CP) $(INCLUDES_DIR) $(DIST_DIR)
-	$(CP) $(LIBFT_DIR) $(DIST_DIR)
-	$(ECHO) $(WHOAMI) > $(DIST_DIR)/author
-	$(ECHO) "Dist created in $(DIST_DIR)"
-$(DOCS_DIR):
-	$(MKDIR) $(DOCS_DIR)
-	$(DOXYGEN) $(DOXYGEN_CONFIG)
-$(LIBFT_DIR):
-	$(MAKE) $(LIBFT_DIR)
-.PHONY: all clean fclean re norm tests dist
+
+.PHONY: all clean fclean re

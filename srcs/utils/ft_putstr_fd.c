@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 11:02:31 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 20:17:01 by welee            ###   ########.fr       */
+/*   Created: 2024/07/26 16:36:03 by welee             #+#    #+#             */
+/*   Updated: 2024/07/26 16:36:38 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#include <unistd.h>
 
-# include "stack.h"
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
 
-void	print_error_and_exit(t_stack *a, t_stack *b);
-int		is_duplicate(int *arr, int size, int num);
-void	parse_arguments(t_stack *a, int argc, char **argv);
-
-void	ft_sort_int_tab(int *tab, int size);
-
-#endif
+	i = 0;
+	while (s && s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+}

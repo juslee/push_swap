@@ -5,36 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 20:04:47 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 20:04:52 by welee            ###   ########.fr       */
+/*   Created: 2024/07/26 20:50:35 by welee             #+#    #+#             */
+/*   Updated: 2024/07/26 20:50:56 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "sort.h"
 
 void	sort_three(t_stack *a)
 {
-	int	top;
-	int	mid;
-	int	bottom;
+	int	first;
+	int	second;
+	int	third;
 
-	top = a->top->value;
-	mid = a->top->next->value;
-	bottom = a->top->next->next->value;
-	if (top > mid && mid < bottom && top < bottom)
+	first = a->top->value;
+	second = a->top->next->value;
+	third = a->top->prev->value;
+	if (first > second && second < third && third > first)
 		sa(a);
-	else if (top > mid && mid > bottom && top > bottom)
+	else if (first > second && second > third)
 	{
 		sa(a);
 		rra(a);
 	}
-	else if (top > mid && mid < bottom && top > bottom)
+	else if (first > second && second < third)
 		ra(a);
-	else if (top < mid && mid > bottom && top < bottom)
+	else if (first < second && second > third && third > first)
 	{
 		sa(a);
 		ra(a);
 	}
-	else if (top < mid && mid > bottom && top > bottom)
+	else if (first < second && second > third)
 		rra(a);
 }

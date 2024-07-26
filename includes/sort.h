@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error_and_exit.c                             :+:      :+:    :+:   */
+/*   sort.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 20:11:03 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 20:11:13 by welee            ###   ########.fr       */
+/*   Created: 2024/07/26 20:16:33 by welee             #+#    #+#             */
+/*   Updated: 2024/07/26 21:54:14 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef SORT_H
+# define SORT_H
 
-void	print_error_and_exit(t_stack *a, t_stack *b)
-{
-	if (a)
-		ft_stack_clear(a);
-	if (b)
-		ft_stack_clear(b);
-	ft_putstr_fd("Error\n", 2);
-	exit(EXIT_FAILURE);
-}
+# include "stack.h"
+# include "operations.h"
+
+// Main sorting function
+void	sort_stack(t_stack *a, t_stack *b);
+
+// Helper sorting functions
+void	sort_three(t_stack *a);
+void	sort_five(t_stack *a, t_stack *b);
+int		get_max_bits(t_stack *a);
+void	radix_sort(t_stack *a, t_stack *b);
+void	insertion_sort(t_stack *a, t_stack *b);
+
+#endif

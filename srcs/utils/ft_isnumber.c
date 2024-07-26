@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   ft_isnumber.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 14:28:30 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 19:40:08 by welee            ###   ########.fr       */
+/*   Created: 2024/07/26 16:37:18 by welee             #+#    #+#             */
+/*   Updated: 2024/07/26 16:37:34 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "operations.h"
+#include "stack.h"
 
-void	rotate(t_stack *stack)
+int	ft_isnumber(const char *str)
 {
-	t_stacknode	*top_node;
-	t_stacknode	*bottom_node;
+	int	i;
 
-	if (stack->size < 2)
-		return ;
-	top_node = stack->top;
-	bottom_node = stack->bottom;
-	stack->top = top_node->next;
-	stack->top->prev = NULL;
-	bottom_node->next = top_node;
-	top_node->prev = bottom_node;
-	top_node->next = NULL;
-	stack->bottom = top_node;
+	if (!str || !*str)
+		return (0);
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
 }

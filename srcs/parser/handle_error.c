@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_sorted.c                                        :+:      :+:    :+:   */
+/*   handle_error.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 14:14:15 by welee             #+#    #+#             */
-/*   Updated: 2024/07/23 14:14:50 by welee            ###   ########.fr       */
+/*   Created: 2024/07/23 14:17:21 by welee             #+#    #+#             */
+/*   Updated: 2024/07/26 19:48:03 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "parser.h"
 
-int	is_sorted(t_stack *stack)
+void	handle_error(void)
 {
-	t_stacknode	*node;
-
-	if (!stack || stack->size < 2)
-		return (1);
-	node = stack->top;
-	while (node && node->next)
-	{
-		if (node->value > node->next->value)
-			return (0);
-		node = node->next;
-	}
-	return (1);
+	ft_putstr_fd("Error\n", 2);
+	exit(EXIT_FAILURE);
 }

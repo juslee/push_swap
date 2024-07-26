@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_stack_rotate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 14:25:39 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 20:18:24 by welee            ###   ########.fr       */
+/*   Created: 2024/07/26 16:24:14 by welee             #+#    #+#             */
+/*   Updated: 2024/07/26 16:25:05 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "operations.h"
+#include "stack.h"
 
-void	swap(t_stack *stack)
+void	ft_stack_rotate(t_stack *stack)
 {
-	int	temp;
-
-	if (stack->size < 2)
-		return ;
-	temp = stack->top->value;
-	stack->top->value = stack->top->next->value;
-	stack->top->next->value = temp;
+	if (stack->size > 1)
+		stack->top = stack->top->next;
 }

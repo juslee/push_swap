@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_half_to_b.c                                   :+:      :+:    :+:   */
+/*   has_duplicate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 22:27:02 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 23:17:38 by welee            ###   ########.fr       */
+/*   Created: 2024/07/23 14:12:46 by welee             #+#    #+#             */
+/*   Updated: 2024/07/26 21:02:50 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "push_swap.h"
+#include "parser.h"
 
-void	push_half_to_b(t_stack *a, t_stack *b, int *sorted, int size)
+int	has_duplicates(t_stack *a)
 {
-	int	mid;
-	int	pushed;
+	t_node	*current;
+	t_node	*runner;
 
-	mid = size / 2;
-	pushed = 0;
-	while (pushed < mid)
+	if (!a || a->size < 2)
+		return (0);
+	current = a->top;
+	while (current->next != a->top)
 	{
-		if (a->top->value <= sorted[mid])
+		runner = current->next;
+		while (runner != a->top)
 		{
-			pb(a, b);
-			pushed++;
+			if (runner->value == current->value)
+				return (1);
+			runner = runner->next;
 		}
-		else
-		{
-			ra(a);
-		}
+		current = current->next;
 	}
+	return (0);
 }

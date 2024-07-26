@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_error.c                                     :+:      :+:    :+:   */
+/*   parse_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/23 14:17:21 by welee             #+#    #+#             */
-/*   Updated: 2024/07/23 14:18:14 by welee            ###   ########.fr       */
+/*   Created: 2024/07/22 20:12:25 by welee             #+#    #+#             */
+/*   Updated: 2024/07/26 19:41:43 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "stack.h"
+#include "parser.h"
 
-int	handle_error(t_stack *a, t_stack *b)
+static int	is_int(const char *str)
 {
-	if (a)
-		ft_stack_clear(a);
-	if (b)
-		ft_stack_clear(b);
-	ft_putstr_fd("Error\n", 2);
+	long	num;
+
+	num = ft_atol(str);
+	if (num < INT_MIN || num > INT_MAX)
+		return (0);
+	return (1);
+}
+
+int	parse_args(t_stack *a, int argc, char **argv)
+{
+	int		i;
+	long	num;
+
+	i = argc - 1;
+	while (i > 0)
+	{
+		if (!ft_isnumber(argv[i]) || !is_int(argv[i]))
+			return (0);
+		num = ft_atol(argv[i]);
+		ft_stack_push(a, (int)num);
+		i--;
+	}
 	return (1);
 }

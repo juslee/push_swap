@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:03:47 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 14:33:25 by welee            ###   ########.fr       */
+/*   Updated: 2024/07/26 20:06:34 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
  */
 void	rra(t_stack *a)
 {
-	reverse_rotate(a);
-	write(1, "rra\n", 4);
+	if (a->size > 1)
+	{
+		ft_stack_reverse_rotate(a);
+		write(1, "rra\n", 4);
+	}
 }

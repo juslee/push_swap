@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_int_tab.c                                  :+:      :+:    :+:   */
+/*   is_sorted.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 20:16:36 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 20:16:56 by welee            ###   ########.fr       */
+/*   Created: 2024/07/23 14:14:15 by welee             #+#    #+#             */
+/*   Updated: 2024/07/26 21:03:04 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_sort_int_tab(int *tab, int size)
-{
-	int	i;
-	int	j;
-	int	tmp;
+#include "parser.h"
 
-	i = 0;
-	while (i < size)
+int	is_sorted(t_stack *a)
+{
+	t_node	*current;
+
+	if (!a || a->size < 2)
+		return (1);
+	current = a->top;
+	while (current->next != a->top)
 	{
-		j = 0;
-		while (j < size - 1)
-		{
-			if (tab[j] > tab[j + 1])
-			{
-				tmp = tab[j];
-				tab[j] = tab[j + 1];
-				tab[j + 1] = tmp;
-			}
-			j++;
-		}
-		i++;
+		if (current->value > current->next->value)
+			return (0);
+		current = current->next;
 	}
+	return (1);
 }

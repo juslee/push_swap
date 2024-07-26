@@ -1,20 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stack_top.c                                     :+:      :+:    :+:   */
+/*   get_max_bits.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 19:47:15 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 19:47:40 by welee            ###   ########.fr       */
+/*   Created: 2024/07/26 20:54:47 by welee             #+#    #+#             */
+/*   Updated: 2024/07/26 21:02:01 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "sort.h"
 
-int	ft_stack_top(t_stack *stack)
+int	get_max_bits(t_stack *a)
 {
-	if (stack->size == 0)
-		return (0);
-	return (stack->top->value);
+	t_node	*current;
+	int		max;
+	int		bits;
+
+	current = a->top;
+	max = current->value;
+	bits = 0;
+	while (current->next != a->top)
+	{
+		if (current->value > max)
+			max = current->value;
+		current = current->next;
+	}
+	while (max)
+	{
+		bits++;
+		max >>= 1;
+	}
+	return (bits);
 }

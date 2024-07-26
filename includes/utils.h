@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_duplicate.c                                     :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 20:11:48 by welee             #+#    #+#             */
-/*   Updated: 2024/07/22 20:12:00 by welee            ###   ########.fr       */
+/*   Created: 2024/07/26 16:31:58 by welee             #+#    #+#             */
+/*   Updated: 2024/07/26 19:36:07 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-int	is_duplicate(int *arr, int size, int num)
-{
-	int	i;
+# include <unistd.h>
 
-	i = 0;
-	while (i < size)
-	{
-		if (arr[i] == num)
-			return (1);
-		i++;
-	}
-	return (0);
-}
+void	ft_putstr_fd(char *s, int fd);
+long	ft_atol(const char *str);
+int		ft_isnumber(const char *str);
+
+#endif
