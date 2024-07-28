@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   print_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 16:33:18 by welee             #+#    #+#             */
-/*   Updated: 2024/07/26 16:36:49 by welee            ###   ########.fr       */
+/*   Created: 2024/07/27 19:25:43 by welee             #+#    #+#             */
+/*   Updated: 2024/07/27 22:06:32 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "parser.h"
 
-long	ft_atol(const char *str)
+void	print_stack(t_stack *stack)
 {
-	long	result;
-	int		sign;
+	t_node	*current;
+	int		first_pass;
+	char	*value_str;
 
-	result = 0;
-	sign = 1;
-	while ((*str >= 9 && *str <= 13) || *str == ' ')
-		str++;
-	if (*str == '-' || *str == '+')
+	if (!stack || !stack->top)
+		return ;
+	current = stack->top;
+	first_pass = 1;
+	while (first_pass || current != stack->top)
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
+		first_pass = 0;
+		value_str = ft_itoa(current->value);
+		if (value_str)
+		{
+			ft_putendl_fd(value_str, 1);
+			free(value_str);
+		}
+		current = current->next;
 	}
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + (*str - '0');
-		str++;
-	}
-	return (result * sign);
 }

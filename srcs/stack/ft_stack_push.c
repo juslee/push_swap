@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:44:26 by welee             #+#    #+#             */
-/*   Updated: 2024/07/26 21:03:33 by welee            ###   ########.fr       */
+/*   Updated: 2024/07/28 18:17:57 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_stack_push(t_stack *stack, int value)
 {
 	t_node	*new_node;
 
+	if (!stack)
+		return ;
 	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
 		return ;
@@ -36,4 +38,3 @@ void	ft_stack_push(t_stack *stack, int value)
 	}
 	stack->size++;
 }
-// Compare this snippet from srcs/stack/ft_stack_pop.c:

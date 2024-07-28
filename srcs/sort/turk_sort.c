@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_five.c                                        :+:      :+:    :+:   */
+/*   turk_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 20:51:18 by welee             #+#    #+#             */
-/*   Updated: 2024/07/28 15:57:27 by welee            ###   ########.fr       */
+/*   Created: 2024/07/27 21:49:43 by welee             #+#    #+#             */
+/*   Updated: 2024/07/27 21:55:43 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sort.h"
-#include <stdio.h>
 
 static int	find_min_index(t_stack *a)
 {
-	t_node	*current;
 	int		min;
 	int		min_index;
+	t_node	*current;
 	int		i;
 
-	if (!a || !a->top)
-		return (-1);
 	current = a->top;
 	min = current->value;
 	min_index = 0;
 	i = 0;
-	while (i < a->size)
+	while (current)
 	{
 		if (current->value < min)
 		{
@@ -57,19 +54,20 @@ static void	move_to_top(t_stack *a, int index)
 	}
 }
 
-void	sort_five(t_stack *a, t_stack *b)
+void	turk_sort(t_stack *a, t_stack *b)
 {
+	int	size;
 	int	min_index;
 
-	min_index = find_min_index(a);
-	move_to_top(a, min_index);
-	pb(a, b);
-	min_index = find_min_index(a);
-	move_to_top(a, min_index);
-	pb(a, b);
+	size = a->size;
+	while (size > 3)
+	{
+		min_index = find_min_index(a);
+		move_to_top(a, min_index);
+		pb(a, b);
+		size--;
+	}
 	sort_three(a);
-	if (b->top->value < b->top->next->value)
-		sb(b);
-	pa(a, b);
-	pa(a, b);
+	while (b->size > 0)
+		pa(a, b);
 }

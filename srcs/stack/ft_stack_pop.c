@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:45:33 by welee             #+#    #+#             */
-/*   Updated: 2024/07/26 21:04:17 by welee            ###   ########.fr       */
+/*   Updated: 2024/07/28 18:18:52 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_stack_pop(t_stack *stack)
 	t_node	*pop_node;
 	int		value;
 
-	if (stack->size == 0)
+	if (!stack || stack->size == 0)
 		return (INT_MIN);
 	pop_node = stack->top;
 	value = pop_node->value;

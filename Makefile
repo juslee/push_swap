@@ -6,7 +6,7 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/07/26 21:05:19 by welee            ###   ########.fr        #
+#    Updated: 2024/07/27 19:46:08 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ SRC_DIR = srcs
 INC_DIR = includes
 OBJ_DIR = objs
 
+LIBFT = libft/bin/libft.a
+LIBFT_INC = libft/includes
 SRCS = $(wildcard $(SRC_DIR)/stack/*.c) \
 	   $(wildcard $(SRC_DIR)/utils/*.c) \
 	   $(wildcard $(SRC_DIR)/operations/*.c) \
@@ -25,13 +27,16 @@ SRCS = $(wildcard $(SRC_DIR)/stack/*.c) \
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR)
+CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_INC)
 RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
+
+$(LIBFT):
+	$(MAKE) -C libft
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
@@ -39,9 +44,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	$(RM) $(OBJS)
+	$(MAKE) -C libft clean
 
 fclean: clean
 	$(RM) $(NAME)
+	$(MAKE) -C libft fclean
 
 re: fclean all
 

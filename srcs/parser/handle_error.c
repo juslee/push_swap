@@ -6,14 +6,18 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 14:17:21 by welee             #+#    #+#             */
-/*   Updated: 2024/07/26 19:48:03 by welee            ###   ########.fr       */
+/*   Updated: 2024/07/27 19:14:59 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	handle_error(void)
+int	handle_error(t_stack *a, t_stack *b)
 {
+	if (a)
+		ft_stack_clear(a);
+	if (b)
+		ft_stack_clear(b);
 	ft_putstr_fd("Error\n", 2);
-	exit(EXIT_FAILURE);
+	return (EXIT_FAILURE);
 }

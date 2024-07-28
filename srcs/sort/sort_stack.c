@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 20:48:55 by welee             #+#    #+#             */
-/*   Updated: 2024/07/26 22:03:05 by welee            ###   ########.fr       */
+/*   Updated: 2024/07/28 19:46:53 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	sort_stack(t_stack *a, t_stack *b)
 		sort_three(a);
 	else if (a->size <= 5)
 		sort_five(a, b);
-	else if (a->size <= 100)
-		insertion_sort(a, b);
 	else
 		insertion_sort(a, b);
 }
