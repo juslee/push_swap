@@ -52,6 +52,8 @@ Mkfile.old
 dkms.conf
 
 # Local files
+.DS_Store
 dist/**/*
 docs/**/*
 bin/**/*
+push_swap
