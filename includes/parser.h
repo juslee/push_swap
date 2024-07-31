@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:02:31 by welee             #+#    #+#             */
-/*   Updated: 2024/07/27 22:07:34 by welee            ###   ########.fr       */
+/*   Updated: 2024/07/29 13:51:22 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		parse_single_arg(t_stack *a, const char *arg);
 int		has_duplicates(t_stack *a);
 int		is_sorted(t_stack *a);
 int		handle_error(t_stack *a, t_stack *b);
-void	print_stack(t_stack *stack);
+//void	print_stack(t_stack *stack);
+void	print_stack(t_stack *stack, char *name);
 
 #endif
