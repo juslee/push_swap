@@ -6,12 +6,12 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/07/31 22:34:19 by welee            ###   ########.fr        #
+#    Updated: 2024/07/31 23:39:06 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
-BONUS_NAME = checker
+NAME = bin/push_swap
+BONUS_NAME = bin/checker
 
 SRCS_DIR = srcs
 INCS_DIR = includes
@@ -19,6 +19,7 @@ OBJS_DIR = objs
 PUBLIC_DIR = public
 
 LIBFT = libft/bin/libft.a
+LIBFT_LIB = -Llibft/bin -lft
 LIBFT_INC = libft/includes
 SRCS = $(wildcard $(SRCS_DIR)/stack/*.c) \
 	   $(wildcard $(SRCS_DIR)/utils/*.c) \
@@ -29,6 +30,7 @@ SRCS = $(wildcard $(SRCS_DIR)/stack/*.c) \
 OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
 GET_NEXT_LINE = get_next_line/bin/libgnl.a
+GET_NEXT_LINE_LIB = -Lget_next_line/bin -lgnl
 GET_NEXT_LINE_INC = get_next_line/includes
 BONUS_SRCS = $(wildcard $(SRCS_DIR)/stack/*.c) \
 			 $(wildcard $(SRCS_DIR)/utils/*.c) \
@@ -47,16 +49,16 @@ NORM_FLAGS = -R CheckForbiddenSourceHeader -R CheckDefine
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB)
 
 bonus: $(LIBFT) $(GET_NEXT_LINE) $(BONUS_OBJS)
-	$(CC) $(CFLAGS_BONUS) -o $(BONUS_NAME) $(BONUS_OBJS) $(LIBFT) $(GET_NEXT_LINE)
+	$(CC) $(CFLAGS) -o $(BONUS_NAME) $(BONUS_OBJS) $(GET_NEXT_LINE_LIB) $(LIBFT_LIB)
 
 $(LIBFT):
 	$(MAKE) -C libft
 
 $(GET_NEXT_LINE):
-	$(MAKE) -C get_next_line bonus
+	$(MAKE) -C get_next_line
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(dir $@)
