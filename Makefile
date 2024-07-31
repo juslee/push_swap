@@ -6,50 +6,75 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/07/27 19:46:08 by welee            ###   ########.fr        #
+#    Updated: 2024/07/31 22:34:19 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
+BONUS_NAME = checker
 
-SRC_DIR = srcs
-INC_DIR = includes
-OBJ_DIR = objs
+SRCS_DIR = srcs
+INCS_DIR = includes
+OBJS_DIR = objs
+PUBLIC_DIR = public
 
 LIBFT = libft/bin/libft.a
 LIBFT_INC = libft/includes
-SRCS = $(wildcard $(SRC_DIR)/stack/*.c) \
-	   $(wildcard $(SRC_DIR)/utils/*.c) \
-	   $(wildcard $(SRC_DIR)/operations/*.c) \
-	   $(wildcard $(SRC_DIR)/parser/*.c) \
-	   $(wildcard $(SRC_DIR)/sort/*.c) \
-	   $(wildcard $(SRC_DIR)/*.c)
-OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+SRCS = $(wildcard $(SRCS_DIR)/stack/*.c) \
+	   $(wildcard $(SRCS_DIR)/utils/*.c) \
+	   $(wildcard $(SRCS_DIR)/operations/*.c) \
+	   $(wildcard $(SRCS_DIR)/parser/*.c) \
+	   $(wildcard $(SRCS_DIR)/sort/*.c) \
+	   $(wildcard $(SRCS_DIR)/main.c)
+OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(LIBFT_INC)
+GET_NEXT_LINE = get_next_line/bin/libgnl.a
+GET_NEXT_LINE_INC = get_next_line/includes
+BONUS_SRCS = $(wildcard $(SRCS_DIR)/stack/*.c) \
+			 $(wildcard $(SRCS_DIR)/utils/*.c) \
+			 $(wildcard $(SRCS_DIR)/operations/*.c) \
+			 $(wildcard $(SRCS_DIR)/parser/*.c) \
+			 $(wildcard $(SRCS_DIR)/bonus/*.c)
+BONUS_OBJS = $(BONUS_SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
+
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -I$(INCS_DIR) -I$(LIBFT_INC) -I$(GET_NEXT_LINE_INC)
 RM = rm -f
+
+NORM = norminette
+NORM_FLAGS = -R CheckForbiddenSourceHeader -R CheckDefine
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
 
+bonus: $(LIBFT) $(GET_NEXT_LINE) $(BONUS_OBJS)
+	$(CC) $(CFLAGS_BONUS) -o $(BONUS_NAME) $(BONUS_OBJS) $(LIBFT) $(GET_NEXT_LINE)
+
 $(LIBFT):
 	$(MAKE) -C libft
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(GET_NEXT_LINE):
+	$(MAKE) -C get_next_line bonus
+
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)
 	$(MAKE) -C libft clean
+	$(MAKE) -C get_next_line clean
 
 fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) -C libft fclean
+	$(MAKE) -C get_next_line fclean
 
 re: fclean all
+
+norm:
+	$(NORM) $(NORM_FLAGS) $(SRCS_DIR) $(INCS_DIR) $(PUBLIC_DIR)
 
 .PHONY: all clean fclean re
