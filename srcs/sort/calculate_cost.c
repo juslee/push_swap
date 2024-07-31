@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 11:14:21 by welee             #+#    #+#             */
-/*   Updated: 2024/07/31 18:16:00 by welee            ###   ########.fr       */
+/*   Updated: 2024/07/31 19:11:20 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ static int	find_best_fit_index(t_stack *b, int value)
 	best_fit_index = -1;
 	while (index < b->size)
 	{
-		if ((current->value <= value) &&
-			(best_fit == NULL || current->value > best_fit->value))
+		if ((current->value <= value)
+			&& (best_fit == NULL || current->value > best_fit->value))
 		{
 			best_fit = current;
 			best_fit_index = index;
@@ -85,8 +85,6 @@ static int	find_target_index_b(t_stack *b, int value)
 		best_fit_index = find_max_value_index(b, max_value);
 	return (best_fit_index);
 }
-
-#include <stdio.h>
 
 t_cost	calculate_cost(t_stack *a, t_stack *b, int index_a)
 {

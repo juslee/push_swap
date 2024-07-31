@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 10:11:43 by welee             #+#    #+#             */
-/*   Updated: 2024/07/31 18:01:33 by welee            ###   ########.fr       */
+/*   Updated: 2024/07/31 19:26:46 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include "sort.h"
 #include "stack.h"
 #include "libft.h"
+
+static int	initialize_stacks(t_stack **a, t_stack **b)
+{
+	*a = ft_stack_new();
+	*b = ft_stack_new();
+	if (!*a || !*b)
+		return (0);
+	return (1);
+}
 
 int	main(int argc, char **argv)
 {
@@ -23,9 +32,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	a = ft_stack_new();
-	b = ft_stack_new();
-	if (!a || !b)
+	if (!initialize_stacks(&a, &b))
 		return (handle_error(a, b));
 	if (argc == 2)
 		parse_result = parse_single_arg(a, argv[1]);
