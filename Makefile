@@ -6,7 +6,7 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/07/31 23:39:06 by welee            ###   ########.fr        #
+#    Updated: 2024/07/31 23:45:22 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,10 +48,12 @@ NORM_FLAGS = -R CheckForbiddenSourceHeader -R CheckDefine
 
 all: $(NAME)
 
+bonus: $(BONUS_NAME)
+
 $(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB)
 
-bonus: $(LIBFT) $(GET_NEXT_LINE) $(BONUS_OBJS)
+$(BONUS_NAME): $(LIBFT) $(GET_NEXT_LINE) $(BONUS_OBJS)
 	$(CC) $(CFLAGS) -o $(BONUS_NAME) $(BONUS_OBJS) $(GET_NEXT_LINE_LIB) $(LIBFT_LIB)
 
 $(LIBFT):
