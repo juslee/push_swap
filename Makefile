@@ -6,7 +6,7 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/08/01 13:28:46 by welee            ###   ########.fr        #
+#    Updated: 2024/08/01 14:11:02 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,13 +51,14 @@ all: $(NAME)
 
 bonus: $(BONUS_NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-	@mkdir -p $(BINS_DIR)
+$(NAME): $(LIBFT) $(OBJS) | $(BINS_DIR)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB)
 
 $(BONUS_NAME): $(LIBFT) $(GET_NEXT_LINE) $(BONUS_OBJS)
-	@mkdir -p $(BINS_DIR)
-	$(CC) $(CFLAGS) -o $$(BONUS_NAME) $(BONUS_OBJS) $(GET_NEXT_LINE_LIB) $(LIBFT_LIB)
+	$(CC) $(CFLAGS) -o $(BONUS_NAME) $(BONUS_OBJS) $(GET_NEXT_LINE_LIB) $(LIBFT_LIB)
+
+$(BINS_DIR) $(OBJS_DIR):
+	mkdir -p $@
 
 $(LIBFT):
 	$(MAKE) -C libft
@@ -66,7 +67,6 @@ $(GET_NEXT_LINE):
 	$(MAKE) -C get_next_line
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
