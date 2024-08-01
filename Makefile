@@ -6,12 +6,12 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/08/01 13:01:02 by welee            ###   ########.fr        #
+#    Updated: 2024/08/01 13:28:46 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
-BONUS_NAME = checker
+NAME = $(BINS_DIR)/push_swap
+BONUS_NAME = $(BINS_DIR)/checker
 
 SRCS_DIR = srcs
 INCS_DIR = includes
@@ -53,11 +53,11 @@ bonus: $(BONUS_NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
 	@mkdir -p $(BINS_DIR)
-	$(CC) $(CFLAGS) -o $(BINS_DIR)/$(NAME) $(OBJS) $(LIBFT_LIB)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB)
 
 $(BONUS_NAME): $(LIBFT) $(GET_NEXT_LINE) $(BONUS_OBJS)
 	@mkdir -p $(BINS_DIR)
-	$(CC) $(CFLAGS) -o $(BINS_DIR)/$(BONUS_NAME) $(BONUS_OBJS) $(GET_NEXT_LINE_LIB) $(LIBFT_LIB)
+	$(CC) $(CFLAGS) -o $$(BONUS_NAME) $(BONUS_OBJS) $(GET_NEXT_LINE_LIB) $(LIBFT_LIB)
 
 $(LIBFT):
 	$(MAKE) -C libft
