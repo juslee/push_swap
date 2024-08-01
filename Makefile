@@ -6,16 +6,17 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/07/31 23:45:22 by welee            ###   ########.fr        #
+#    Updated: 2024/08/01 13:01:02 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bin/push_swap
-BONUS_NAME = bin/checker
+NAME = push_swap
+BONUS_NAME = checker
 
 SRCS_DIR = srcs
 INCS_DIR = includes
 OBJS_DIR = objs
+BINS_DIR = bin
 PUBLIC_DIR = public
 
 LIBFT = libft/bin/libft.a
@@ -51,10 +52,12 @@ all: $(NAME)
 bonus: $(BONUS_NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB)
+	@mkdir -p $(BINS_DIR)
+	$(CC) $(CFLAGS) -o $(BINS_DIR)/$(NAME) $(OBJS) $(LIBFT_LIB)
 
 $(BONUS_NAME): $(LIBFT) $(GET_NEXT_LINE) $(BONUS_OBJS)
-	$(CC) $(CFLAGS) -o $(BONUS_NAME) $(BONUS_OBJS) $(GET_NEXT_LINE_LIB) $(LIBFT_LIB)
+	@mkdir -p $(BINS_DIR)
+	$(CC) $(CFLAGS) -o $(BINS_DIR)/$(BONUS_NAME) $(BONUS_OBJS) $(GET_NEXT_LINE_LIB) $(LIBFT_LIB)
 
 $(LIBFT):
 	$(MAKE) -C libft

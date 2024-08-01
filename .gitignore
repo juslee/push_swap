@@ -56,4 +56,3 @@ dkms.conf
 dist/**/*
 docs/**/*
 bin/**/*
-push_swap
