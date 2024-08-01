@@ -6,7 +6,7 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/08/01 14:11:02 by welee            ###   ########.fr        #
+#    Updated: 2024/08/01 15:04:06 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS_DIR = srcs
 INCS_DIR = includes
 OBJS_DIR = objs
 BINS_DIR = bin
-PUBLIC_DIR = public
+PUBL_DIR = public
 
 LIBFT = libft/bin/libft.a
 LIBFT_LIB = -Llibft/bin -lft
@@ -76,6 +76,7 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) $(BONUS_NAME)
 	$(MAKE) -C libft fclean
 	$(MAKE) -C get_next_line fclean
 
