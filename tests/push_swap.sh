@@ -13,7 +13,7 @@ generate_random_numbers() {
 
 # Check for arguments
 if [ $# -lt 1 ]; then
-	echo "Usage: $0 <number_of_integers> [flag]"
+	echo "Usage: $0 <number_of_integers> [checker|wc|both]"
 	exit 1
 fi
 
