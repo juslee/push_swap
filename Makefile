@@ -6,7 +6,7 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/08/05 14:18:18 by welee            ###   ########.fr        #
+#    Updated: 2024/08/05 16:39:18 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ INCS_DIR = includes
 OBJS_DIR = objs
 BINS_DIR = bin
 LIBS_DIR = libs
+DIST_DIR = dist
 PUBL_DIR = public
 
 LIBFT_DIR = $(LIBS_DIR)/libft
@@ -46,6 +47,8 @@ BONUS_OBJS = $(BONUS_SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I$(INCS_DIR) -I$(LIBFT_INC) -I$(GET_NEXT_LINE_INC)
 RM = rm -f
+MKDIR = mkdir -p
+CP = cp -r
 
 NORM = norminette
 NORM_FLAGS = -R CheckForbiddenSourceHeader -R CheckDefine
@@ -60,32 +63,46 @@ $(NAME): $(LIBFT) $(OBJS) | $(BINS_DIR)
 $(BONUS_NAME): $(LIBFT) $(GET_NEXT_LINE) $(BONUS_OBJS) | $(BINS_DIR)
 	$(CC) $(CFLAGS) -o $(BONUS_NAME) $(BONUS_OBJS) $(GET_NEXT_LINE_LIB) $(LIBFT_LIB)
 
-$(BINS_DIR) $(OBJS_DIR):
-	@mkdir -p $@
+$(BINS_DIR):
+	$(MKDIR) $@
 
 $(LIBFT):
-	$(MAKE) -C libft
+	$(MAKE) -C $(LIBFT_DIR)
 
 $(GET_NEXT_LINE):
-	$(MAKE) -C get_next_line
+	$(MAKE) -C $(GET_NEXT_LINE_DIR)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+	$(MKDIR) $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)
-	$(MAKE) -C libft clean
-	$(MAKE) -C get_next_line clean
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(GET_NEXT_LINE_DIR) clean
 
 fclean: clean
 	$(RM) $(NAME)
 	$(RM) $(BONUS_NAME)
-	$(MAKE) -C libft fclean
-	$(MAKE) -C get_next_line fclean
+	$(RM) -r $(DIST_DIR)
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(GET_NEXT_LINE_DIR) fclean
 
 re: fclean all
 
 norm:
-	$(NORM) $(NORM_FLAGS) $(SRCS_DIR) $(INCS_DIR) $(PUBLIC_DIR)
+	$(NORM) $(NORM_FLAGS) $(SRCS_DIR) $(INCS_DIR) $(PUBL_DIR)
 
-.PHONY: all clean fclean re norm bonus
+dist: fclean
+	$(MKDIR) $(DIST_DIR)
+	$(MKDIR) $(DIST_DIR)/$(SRCS_DIR)
+	$(MKDIR) $(DIST_DIR)/$(INCS_DIR)
+	$(MKDIR) $(DIST_DIR)/$(LIBFT_DIR)
+	$(MKDIR) $(DIST_DIR)/$(GET_NEXT_LINE_DIR)
+	$(CP) $(SRCS_DIR)/* $(DIST_DIR)/$(SRCS_DIR)
+	$(CP) $(INCS_DIR)/* $(DIST_DIR)/$(INCS_DIR)
+	$(CP) $(LIBFT_DIR)/* $(DIST_DIR)/$(LIBFT_DIR)
+	$(CP) $(GET_NEXT_LINE_DIR)/* $(DIST_DIR)/$(GET_NEXT_LINE_DIR)
+	$(CP) $(PUBL_DIR)/Makefile $(DIST_DIR)
+
+.PHONY: all clean fclean re norm bonus dist
