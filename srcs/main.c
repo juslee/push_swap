@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 10:11:43 by welee             #+#    #+#             */
-/*   Updated: 2024/07/31 22:05:34 by welee            ###   ########.fr       */
+/*   Updated: 2024/08/07 13:34:34 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	int		parse_result;
 
 	if (argc < 2)
-		return (0);
+		return (EXIT_SUCCESS);
 	if (!initialize_stacks(&a, &b))
 		return (handle_error(a, b));
 	if (argc == 2)
