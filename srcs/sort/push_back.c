@@ -6,12 +6,19 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 10:30:39 by welee             #+#    #+#             */
-/*   Updated: 2024/07/31 10:31:11 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/02 14:13:27 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sort.h"
 
+/**
+ * @brief find best position
+ *
+ * @param a stack a
+ * @param value value
+ * @return int best position
+ */
 static int	find_best_position(t_stack *a, int value)
 {
 	t_node	*current;
@@ -40,6 +47,12 @@ static int	find_best_position(t_stack *a, int value)
 	return (best_pos);
 }
 
+/**
+ * @brief push back
+ *
+ * @param a stack a
+ * @param b stack b
+ */
 void	push_back(t_stack *a, t_stack *b)
 {
 	int	pos;

@@ -6,12 +6,18 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 14:14:15 by welee             #+#    #+#             */
-/*   Updated: 2024/07/26 21:03:04 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/02 14:02:57 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+/**
+ * @brief check if stack a is sorted
+ *
+ * @param a stack a
+ * @return int 1 if sorted, 0 otherwise
+ */
 int	is_sorted(t_stack *a)
 {
 	t_node	*current;

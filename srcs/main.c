@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 10:11:43 by welee             #+#    #+#             */
-/*   Updated: 2024/08/07 13:34:34 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/02 14:05:14 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 #include "stack.h"
 #include "libft.h"
 
+/**
+ * @brief initialize stacks
+ *
+ * @param a stack a
+ * @param b stack b
+ * @return int 1 if success, 0 if failed
+ */
 static int	initialize_stacks(t_stack **a, t_stack **b)
 {
 	*a = ft_stack_new();

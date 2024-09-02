@@ -6,12 +6,18 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:45:33 by welee             #+#    #+#             */
-/*   Updated: 2024/07/28 18:18:52 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/02 14:04:18 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
+/**
+ * @brief pop stack
+ *
+ * @param stack stack
+ * @return int value
+ */
 int	ft_stack_pop(t_stack *stack)
 {
 	t_node	*pop_node;

@@ -6,12 +6,18 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:55:53 by welee             #+#    #+#             */
-/*   Updated: 2024/07/30 16:56:05 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/02 14:13:51 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sort.h"
 
+/**
+ * @brief find min position
+ *
+ * @param a stack a
+ * @return int min position
+ */
 static int	find_min_position(t_stack *a)
 {
 	t_node	*current;
@@ -36,6 +42,12 @@ static int	find_min_position(t_stack *a)
 	return (min_position);
 }
 
+/**
+ * @brief perform rotation
+ *
+ * @param a stack a
+ * @param min_position min position
+ */
 static void	perform_rotation(t_stack *a, int min_position)
 {
 	int	rotate_count;
@@ -54,6 +66,11 @@ static void	perform_rotation(t_stack *a, int min_position)
 	}
 }
 
+/**
+ * @brief rotate stack a to the minimum value
+ *
+ * @param a stack a
+ */
 void	rotate_to_min(t_stack *a)
 {
 	int	min_position;

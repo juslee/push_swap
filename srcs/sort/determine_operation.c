@@ -6,13 +6,22 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:33:24 by welee             #+#    #+#             */
-/*   Updated: 2024/07/31 17:35:10 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/02 14:10:44 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sort.h"
 #include "libft.h"
 
+/**
+ * @brief reset cost
+ *
+ * @param ra ra
+ * @param rb rb
+ * @param rra rra
+ * @param rrb rrb
+ * @return t_cost cost
+ */
 static t_cost	reset_cost(int ra, int rb, int rra, int rrb)
 {
 	t_cost	cost;
@@ -24,6 +33,12 @@ static t_cost	reset_cost(int ra, int rb, int rra, int rrb)
 	return (cost);
 }
 
+/**
+ * @brief determine operation
+ *
+ * @param cost cost
+ * @return t_cost cost
+ */
 t_cost	determine_operation(t_cost cost)
 {
 	int	total_ra_rb;

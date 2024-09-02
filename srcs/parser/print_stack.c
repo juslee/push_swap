@@ -6,13 +6,19 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 19:25:43 by welee             #+#    #+#             */
-/*   Updated: 2024/07/31 19:10:29 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/02 14:03:45 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "libft.h"
 
+/**
+ * @brief print stack
+ *
+ * @param stack stack
+ * @param name name
+ */
 void	print_stack(t_stack *stack, char *name)
 {
 	t_node	*current;

@@ -6,12 +6,17 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 20:50:35 by welee             #+#    #+#             */
-/*   Updated: 2024/07/26 20:50:56 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/02 14:08:33 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sort.h"
 
+/**
+ * @brief sort three
+ *
+ * @param a stack a
+ */
 void	sort_three(t_stack *a)
 {
 	int	first;

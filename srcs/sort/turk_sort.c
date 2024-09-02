@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:49:43 by welee             #+#    #+#             */
-/*   Updated: 2024/07/31 17:39:13 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/02 14:15:20 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 #include <stdio.h>
 #include <limits.h>
 
+/**
+ * @brief total cost
+ *
+ * @param cost cost
+ * @return int total cost
+ */
 static int	total_cost(t_cost cost)
 {
 	return (ft_min(
@@ -22,6 +28,12 @@ static int	total_cost(t_cost cost)
 			ft_min(cost.ra + cost.rrb, cost.rra + cost.rb)));
 }
 
+/**
+ * @brief move cheapest element
+ *
+ * @param a stack a
+ * @param b stack b
+ */
 void	move_cheapest(t_stack *a, t_stack *b)
 {
 	t_cost	min_cost;
@@ -48,6 +60,12 @@ void	move_cheapest(t_stack *a, t_stack *b)
 	move_element(a, b, min_cost);
 }
 
+/**
+ * @brief sort n elements
+ *
+ * @param a stack a
+ * @param b stack b
+ */
 void	turk_sort(t_stack *a, t_stack *b)
 {
 	pb(a, b);

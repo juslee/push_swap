@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 19:25:43 by welee             #+#    #+#             */
-/*   Updated: 2024/07/27 20:42:23 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/02 14:03:39 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/**
+ * @brief free split
+ *
+ * @param split split
+ */
 static void	free_split(char **split)
 {
 	int	i;
@@ -28,6 +33,13 @@ static void	free_split(char **split)
 	free(split);
 }
 
+/**
+ * @brief parse single argument
+ *
+ * @param a stack a
+ * @param arg argument
+ * @return int 1 if success, 0 otherwise
+ */
 int	parse_single_arg(t_stack *a, const char *arg)
 {
 	char	**numbers;

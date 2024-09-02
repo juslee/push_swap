@@ -6,12 +6,19 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 14:17:21 by welee             #+#    #+#             */
-/*   Updated: 2024/07/27 19:14:59 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/02 14:02:20 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+/**
+ * @brief handle error
+ *
+ * @param a stack a
+ * @param b stack b
+ * @return int  exit failure
+ */
 int	handle_error(t_stack *a, t_stack *b)
 {
 	if (a)

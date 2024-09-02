@@ -6,12 +6,19 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:31:00 by welee             #+#    #+#             */
-/*   Updated: 2024/07/31 17:31:17 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/02 14:13:12 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sort.h"
 
+/**
+ * @brief do rr
+ *
+ * @param a a
+ * @param b b
+ * @param cost cost
+ */
 static void	do_rr(t_stack *a, t_stack *b, t_cost *cost)
 {
 	while (cost->ra > 0 && cost->rb > 0)
@@ -22,6 +29,13 @@ static void	do_rr(t_stack *a, t_stack *b, t_cost *cost)
 	}
 }
 
+/**
+ * @brief do rrr
+ *
+ * @param a a
+ * @param b b
+ * @param cost cost
+ */
 static void	do_rrr(t_stack *a, t_stack *b, t_cost *cost)
 {
 	while (cost->rra > 0 && cost->rrb > 0)
@@ -32,6 +46,13 @@ static void	do_rrr(t_stack *a, t_stack *b, t_cost *cost)
 	}
 }
 
+/**
+ * @brief rotate stacks
+ *
+ * @param a a
+ * @param b b
+ * @param cost cost
+ */
 static void	rotate_stacks(t_stack *a, t_stack *b, t_cost *cost)
 {
 	while (cost->ra > 0)
@@ -56,6 +77,13 @@ static void	rotate_stacks(t_stack *a, t_stack *b, t_cost *cost)
 	}
 }
 
+/**
+ * @brief move element from a to b
+ *
+ * @param a a
+ * @param b b
+ * @param cost cost
+ */
 void	move_element(t_stack *a, t_stack *b, t_cost cost)
 {
 	t_cost	move;
