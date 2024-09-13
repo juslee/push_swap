@@ -6,7 +6,7 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/08/05 16:39:18 by welee            ###   ########.fr        #
+#    Updated: 2024/09/13 19:05:03 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,10 @@ SRCS_DIR = srcs
 INCS_DIR = includes
 OBJS_DIR = objs
 BINS_DIR = bin
+TEST_DIR = tests
 LIBS_DIR = libs
 DIST_DIR = dist
-PUBL_DIR = public
+DOCS_DIR = docs
 
 LIBFT_DIR = $(LIBS_DIR)/libft
 LIBFT = $(LIBFT_DIR)/bin/libft.a
@@ -46,12 +47,28 @@ BONUS_OBJS = $(BONUS_SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I$(INCS_DIR) -I$(LIBFT_INC) -I$(GET_NEXT_LINE_INC)
+LIBC = ar rcs
 RM = rm -f
 MKDIR = mkdir -p
+MAKE = make
+CD = cd
 CP = cp -r
+ECHO = echo
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	SED := sed -i
+else ifeq ($(UNAME_S),Darwin)
+	SED := sed -i ''
+else
+	$(error Unsupported OS)
+endif
+WHOAMI = $(shell whoami)
 
 NORM = norminette
 NORM_FLAGS = -R CheckForbiddenSourceHeader -R CheckDefine
+
+DOXYGEN = doxygen
+DOXYGEN_CONFIG = Doxyfile
 
 all: $(NAME)
 
@@ -59,6 +76,7 @@ bonus: $(BONUS_NAME)
 
 $(NAME): $(LIBFT) $(OBJS) | $(BINS_DIR)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB)
+	@$(ECHO) "\033[32m$(NAME) compiled\033[0m"
 
 $(BONUS_NAME): $(LIBFT) $(GET_NEXT_LINE) $(BONUS_OBJS) | $(BINS_DIR)
 	$(CC) $(CFLAGS) -o $(BONUS_NAME) $(BONUS_OBJS) $(GET_NEXT_LINE_LIB) $(LIBFT_LIB)
@@ -75,11 +93,13 @@ $(GET_NEXT_LINE):
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	$(MKDIR) $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
+	@$(ECHO) "\033[33m$@\033[0m"
 
 clean:
 	$(RM) $(OBJS)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(GET_NEXT_LINE_DIR) clean
+	@$(ECHO) "\033[31m$(NAME) object files removed\033[0m"
 
 fclean: clean
 	$(RM) $(NAME)
@@ -87,22 +107,28 @@ fclean: clean
 	$(RM) -r $(DIST_DIR)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(MAKE) -C $(GET_NEXT_LINE_DIR) fclean
+	@$(ECHO) "\033[31m$(NAME) removed\033[0m"
 
 re: fclean all
 
+tests: $(NAME)
+
 norm:
-	$(NORM) $(NORM_FLAGS) $(SRCS_DIR) $(INCS_DIR) $(PUBL_DIR)
+	$(NORM) $(NORM_FLAGS) $(SRCS_DIR) $(INCS_DIR)
+	@$(ECHO) "\033[32mNorm check completed\033[0m"
+
+doxygen:
+	@$(DOXYGEN) $(DOXYGEN_CONFIG)
+	@$(ECHO) "\033[32mDoxygen generated\033[0m"
 
 dist: fclean
 	$(MKDIR) $(DIST_DIR)
-	$(MKDIR) $(DIST_DIR)/$(SRCS_DIR)
-	$(MKDIR) $(DIST_DIR)/$(INCS_DIR)
-	$(MKDIR) $(DIST_DIR)/$(LIBFT_DIR)
-	$(MKDIR) $(DIST_DIR)/$(GET_NEXT_LINE_DIR)
-	$(CP) $(SRCS_DIR)/* $(DIST_DIR)/$(SRCS_DIR)
-	$(CP) $(INCS_DIR)/* $(DIST_DIR)/$(INCS_DIR)
-	$(CP) $(LIBFT_DIR)/* $(DIST_DIR)/$(LIBFT_DIR)
-	$(CP) $(GET_NEXT_LINE_DIR)/* $(DIST_DIR)/$(GET_NEXT_LINE_DIR)
-	$(CP) $(PUBL_DIR)/Makefile $(DIST_DIR)
+	$(CP) $(SRCS_DIR) $(INCS_DIR) $(LIBS_DIR) $(DIST_DIR)
+	$(CP) Makefile $(DIST_DIR)
+	$(SED) 's|^NAME = $$(BINS_DIR)/push_swap$$|NAME = push_swap|' $(DIST_DIR)/Makefile
+	$(SED) 's|^BONUS_NAME = $$(BINS_DIR)/checker$$|BONUS_NAME = checker|' $(DIST_DIR)/Makefile
+	$(SED) '/^\$$(NAME):/ s/ | $$(BINS_DIR)//' $(DIST_DIR)/Makefile
+	$(SED) '/^\$$(BONUS_NAME):/ s/ | $$(BINS_DIR)//' $(DIST_DIR)/Makefile
+	@$(ECHO) "\033[32mDistribution files copied\033[0m"
 
-.PHONY: all clean fclean re norm bonus dist
+.PHONY: all bonus clean fclean re norm doxygen dist
