@@ -6,13 +6,28 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/09/13 19:05:03 by welee            ###   ########.fr        #
+#    Updated: 2024/09/18 16:48:32 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = $(BINS_DIR)/push_swap
 BONUS_NAME = $(BINS_DIR)/checker
+SRCS = $(wildcard $(SRCS_DIR)/stack/*.c) \
+	   $(wildcard $(SRCS_DIR)/utils/*.c) \
+	   $(wildcard $(SRCS_DIR)/operations/*.c) \
+	   $(wildcard $(SRCS_DIR)/parser/*.c) \
+	   $(wildcard $(SRCS_DIR)/sort/*.c) \
+	   $(wildcard $(SRCS_DIR)/main.c)
+OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
+INCS = $(wildcard $(INCS_DIR)/*.h)
+BONUS_SRCS = $(wildcard $(SRCS_DIR)/stack/*.c) \
+			 $(wildcard $(SRCS_DIR)/utils/*.c) \
+			 $(wildcard $(SRCS_DIR)/operations/*.c) \
+			 $(wildcard $(SRCS_DIR)/parser/*.c) \
+			 $(wildcard $(SRCS_DIR)/bonus/*.c)
+BONUS_OBJS = $(BONUS_SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
+# Directory Variables ---------------------------------------------------------#
 SRCS_DIR = srcs
 INCS_DIR = includes
 OBJS_DIR = objs
@@ -21,30 +36,21 @@ TEST_DIR = tests
 LIBS_DIR = libs
 DIST_DIR = dist
 DOCS_DIR = docs
+# ---------------------------------------------------------------------------- #
 
+# Library Variables -----------------------------------------------------------#
 LIBFT_DIR = $(LIBS_DIR)/libft
 LIBFT = $(LIBFT_DIR)/bin/libft.a
 LIBFT_LIB = -L$(LIBFT_DIR)/bin -lft
 LIBFT_INC = $(LIBFT_DIR)/includes
-SRCS = $(wildcard $(SRCS_DIR)/stack/*.c) \
-	   $(wildcard $(SRCS_DIR)/utils/*.c) \
-	   $(wildcard $(SRCS_DIR)/operations/*.c) \
-	   $(wildcard $(SRCS_DIR)/parser/*.c) \
-	   $(wildcard $(SRCS_DIR)/sort/*.c) \
-	   $(wildcard $(SRCS_DIR)/main.c)
-OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
 GET_NEXT_LINE_DIR = $(LIBS_DIR)/get_next_line
 GET_NEXT_LINE = $(GET_NEXT_LINE_DIR)/bin/libgnl.a
 GET_NEXT_LINE_LIB = -L$(GET_NEXT_LINE_DIR)/bin -lgnl
 GET_NEXT_LINE_INC = $(GET_NEXT_LINE_DIR)/includes
-BONUS_SRCS = $(wildcard $(SRCS_DIR)/stack/*.c) \
-			 $(wildcard $(SRCS_DIR)/utils/*.c) \
-			 $(wildcard $(SRCS_DIR)/operations/*.c) \
-			 $(wildcard $(SRCS_DIR)/parser/*.c) \
-			 $(wildcard $(SRCS_DIR)/bonus/*.c)
-BONUS_OBJS = $(BONUS_SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
+# ---------------------------------------------------------------------------- #
 
+# Macro Variables -------------------------------------------------------------#
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I$(INCS_DIR) -I$(LIBFT_INC) -I$(GET_NEXT_LINE_INC)
 LIBC = ar rcs
@@ -63,13 +69,17 @@ else
 	$(error Unsupported OS)
 endif
 WHOAMI = $(shell whoami)
+# ---------------------------------------------------------------------------- #
 
+# Tools Variables -------------------------------------------------------------#
 NORM = norminette
 NORM_FLAGS = -R CheckForbiddenSourceHeader -R CheckDefine
 
 DOXYGEN = doxygen
 DOXYGEN_CONFIG = Doxyfile
+# ---------------------------------------------------------------------------- #
 
+# Rules Definition -s----------------------------------------------------------#
 all: $(NAME)
 
 bonus: $(BONUS_NAME)
@@ -90,10 +100,13 @@ $(LIBFT):
 $(GET_NEXT_LINE):
 	$(MAKE) -C $(GET_NEXT_LINE_DIR)
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCS) | $(OBJS_DIR)
 	$(MKDIR) $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 	@$(ECHO) "\033[33m$@\033[0m"
+
+$(OBJS_DIR):
+	$(MKDIR) $@
 
 clean:
 	$(RM) $(OBJS)
@@ -112,6 +125,7 @@ fclean: clean
 re: fclean all
 
 tests: $(NAME)
+	@$(ECHO) "\033[32mTest completed\033[0m"
 
 norm:
 	$(NORM) $(NORM_FLAGS) $(SRCS_DIR) $(INCS_DIR)
@@ -132,3 +146,4 @@ dist: fclean
 	@$(ECHO) "\033[32mDistribution files copied\033[0m"
 
 .PHONY: all bonus clean fclean re norm doxygen dist
+# ---------------------------------------------------------------------------- #
