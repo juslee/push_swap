@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:13:53 by welee             #+#    #+#             */
-/*   Updated: 2024/07/31 22:34:35 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/23 13:58:36 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,9 @@ int	main(int argc, char **argv)
 	if (!process_instructions(a, b))
 		return (EXIT_FAILURE);
 	if (is_sorted(a) && b->size == 0)
-		ft_putstr("OK\n");
+		ft_putstr_fd("OK\n", STDOUT_FILENO);
 	else
-		ft_putstr("KO\n");
+		ft_putstr_fd("KO\n", STDOUT_FILENO);
 	ft_stack_clear(a);
 	ft_stack_clear(b);
 	return (EXIT_SUCCESS);
