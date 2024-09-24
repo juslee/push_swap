@@ -6,7 +6,7 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/09/24 12:13:06 by welee            ###   ########.fr        #
+#    Updated: 2024/09/24 13:24:07 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,8 +128,8 @@ $(BONUS_OBJS_DIR):
 	$(MKDIR) $@
 
 clean:
-	$(RM) -r $(MAIN_OBJS_DIR)
-	$(RM) -r $(BONUS_OBJS_DIR)
+	$(RM) $(OBJS)
+	$(RM) $(BONUS_OBJS)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(GET_NEXT_LINE_DIR) clean
 	@$(ECHO) "\033[31m$(NAME) object files removed\033[0m"
