@@ -6,13 +6,17 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 10:43:54 by welee             #+#    #+#             */
-/*   Updated: 2024/07/27 19:41:15 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/24 11:34:25 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OPERATIONS_H
 # define OPERATIONS_H
 # include "stack.h"
+
+# ifndef WRITE_FLAG
+#  define WRITE_FLAG 1
+# endif
 
 // Stack operations
 void	sa(t_stack *a);

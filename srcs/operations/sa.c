@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 10:46:24 by welee             #+#    #+#             */
-/*   Updated: 2024/07/26 20:07:33 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/24 10:57:43 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	sa(t_stack *a)
 	if (a->size > 1)
 	{
 		ft_stack_swap(a);
-		write(1, "sa\n", 3);
+		if (WRITE_FLAG)
+			write(1, "sa\n", 3);
 	}
 }

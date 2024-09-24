@@ -6,7 +6,7 @@
 /*   By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 10:50:24 by welee             #+#    #+#             */
-/*   Updated: 2024/07/26 20:07:56 by welee            ###   ########.fr       */
+/*   Updated: 2024/09/24 10:58:09 by welee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ss(t_stack *a, t_stack *b)
 	{
 		ft_stack_swap(a);
 		ft_stack_swap(b);
-		write(1, "ss\n", 3);
+		if (WRITE_FLAG)
+			write(1, "ss\n", 3);
 	}
 }

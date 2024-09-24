@@ -6,7 +6,7 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/09/18 16:48:32 by welee            ###   ########.fr        #
+#    Updated: 2024/09/24 11:42:13 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,12 @@ GET_NEXT_LINE_INC = $(GET_NEXT_LINE_DIR)/includes
 # Macro Variables -------------------------------------------------------------#
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I$(INCS_DIR) -I$(LIBFT_INC) -I$(GET_NEXT_LINE_INC)
+TARGET = $(MAKECMDGOALS)
+ifeq ($(TARGET), bonus)
+	CFLAGS += -DWRITE_FLAG=0
+else
+	CFLAGS += -DWRITE_FLAG=1
+endif
 LIBC = ar rcs
 RM = rm -f
 MKDIR = mkdir -p
@@ -90,6 +96,7 @@ $(NAME): $(LIBFT) $(OBJS) | $(BINS_DIR)
 
 $(BONUS_NAME): $(LIBFT) $(GET_NEXT_LINE) $(BONUS_OBJS) | $(BINS_DIR)
 	$(CC) $(CFLAGS) -o $(BONUS_NAME) $(BONUS_OBJS) $(GET_NEXT_LINE_LIB) $(LIBFT_LIB)
+	@$(ECHO) "\033[32m$(BONUS_NAME) compiled\033[0m"
 
 $(BINS_DIR):
 	$(MKDIR) $@
@@ -103,9 +110,12 @@ $(GET_NEXT_LINE):
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCS) | $(OBJS_DIR)
 	$(MKDIR) $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
-	@$(ECHO) "\033[33m$@\033[0m"
+	@$(ECHO) "\033[33mCompiled $@ with WRITE_FLAG=1\033[0m"
 
 $(OBJS_DIR):
+	$(MKDIR) $@
+
+$(BONUS_OBJS_DIR):
 	$(MKDIR) $@
 
 clean:
