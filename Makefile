@@ -6,7 +6,7 @@
 #    By: welee <welee@student.42singapore.sg>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 20:15:13 by welee             #+#    #+#              #
-#    Updated: 2024/09/24 11:42:13 by welee            ###   ########.fr        #
+#    Updated: 2024/09/24 12:13:06 by welee            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,14 +18,18 @@ SRCS = $(wildcard $(SRCS_DIR)/stack/*.c) \
 	   $(wildcard $(SRCS_DIR)/parser/*.c) \
 	   $(wildcard $(SRCS_DIR)/sort/*.c) \
 	   $(wildcard $(SRCS_DIR)/main.c)
-OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
+OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(MAIN_OBJS_DIR)/%.o)
 INCS = $(wildcard $(INCS_DIR)/*.h)
 BONUS_SRCS = $(wildcard $(SRCS_DIR)/stack/*.c) \
 			 $(wildcard $(SRCS_DIR)/utils/*.c) \
 			 $(wildcard $(SRCS_DIR)/operations/*.c) \
 			 $(wildcard $(SRCS_DIR)/parser/*.c) \
 			 $(wildcard $(SRCS_DIR)/bonus/*.c)
-BONUS_OBJS = $(BONUS_SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
+BONUS_OBJS = $(BONUS_SRCS:$(SRCS_DIR)/%.c=$(BONUS_OBJS_DIR)/%.o)
+
+# Object directories for main and bonus
+MAIN_OBJS_DIR = objs/main
+BONUS_OBJS_DIR = objs/bonus
 
 # Directory Variables ---------------------------------------------------------#
 SRCS_DIR = srcs
@@ -107,19 +111,25 @@ $(LIBFT):
 $(GET_NEXT_LINE):
 	$(MAKE) -C $(GET_NEXT_LINE_DIR)
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCS) | $(OBJS_DIR)
+$(MAIN_OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCS) | $(MAIN_OBJS_DIR)
 	$(MKDIR) $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 	@$(ECHO) "\033[33mCompiled $@ with WRITE_FLAG=1\033[0m"
 
-$(OBJS_DIR):
+$(BONUS_OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCS) | $(BONUS_OBJS_DIR)
+	$(MKDIR) $(@D)
+	$(CC) $(CFLAGS) -c $< -o $@
+	@$(ECHO) "\033[33mCompiled $@ with WRITE_FLAG=0\033[0m"
+
+$(MAIN_OBJS_DIR):
 	$(MKDIR) $@
 
 $(BONUS_OBJS_DIR):
 	$(MKDIR) $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) -r $(MAIN_OBJS_DIR)
+	$(RM) -r $(BONUS_OBJS_DIR)
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(GET_NEXT_LINE_DIR) clean
 	@$(ECHO) "\033[31m$(NAME) object files removed\033[0m"

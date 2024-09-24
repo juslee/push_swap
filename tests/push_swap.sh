@@ -30,7 +30,7 @@ fi
 
 # Arguments
 PUSH_SWAP="./bin/push_swap"
-CHECKER="./tests/checker_Mac"
+CHECKER="./bin/checker"
 NUMBER=$1
 FLAG=$2
 
@@ -45,6 +45,7 @@ case $FLAG in
 	$VALGRIND $PUSH_SWAP "$ARG"
 	$PUSH_SWAP "$ARG" > results.txt
 	$VALGRIND $CHECKER "$ARG" < results.txt
+	rm results.txt
 	;;
   wc)
 	echo "Counting operations with wc -l"
@@ -52,6 +53,7 @@ case $FLAG in
 	$VALGRIND $PUSH_SWAP "$ARG"
 	$PUSH_SWAP "$ARG" > results.txt
 	$VALGRIND wc -l < results.txt
+	rm results.txt
 	;;
   both)
 	echo "Running push_swap, checker, and counting operations"
@@ -60,10 +62,12 @@ case $FLAG in
 	$PUSH_SWAP "$ARG"  > results.txt
 	$VALGRIND $CHECKER "$ARG" < results.txt
 	$VALGRIND wc -l < results.txt
+	rm results.txt
 	;;
   *)
 	echo "Running push_swap only"
 	ARG=$(generate_random_numbers "$NUMBER");
 	$VALGRIND $PUSH_SWAP "$ARG"
+	rm results.txt
 	;;
 esac
